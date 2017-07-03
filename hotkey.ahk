@@ -3,30 +3,6 @@
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
-;上下左右
-	CapsLock & j::Send {left}
-	CapsLock & k::Send {down}
-	CapsLock & l::Send {right}
-	CapsLock & i::Send {up}
-;selector
-	::getbi::getElementById('');{left 3}
-	::getbc::getElementsByClassName('');{left 3}
-	::getbt::getElementsByTagName('');{left 3}
-	::ques::querySelector('');{left 3}
-	::quesa::querySelectorAll(''){left 3}
-;timer
-	::sett::setTimeout(, 1000);{left 8}
-	::seti::setInterval(, 1000);{left 8}
-	::clei::clearInterval();{left 2}
-	::clet::clearTimeout();{left 2}
-;Dom
-	::cree::document.createElement('');{left 3}
-	::appc::appendChild();{left 2}
-;Event
-	::adde::addEventListener('',, false);{left 11}
-;typecheck
-	::objc::Object.prototype.toString.call('');{left 3}
-;normal
-	::js::JavaScript
-	::nodejs::Node.js
+::begin::
+<{!}DOCTYPE html>{enter}<html lang="en">{enter}<head>{enter}<meta charset="UTF-8">{enter}<meta name="viewport" content="width=device-width, initial-scale=1.0">{enter}<meta http-equiv="X-UA-Compatible" content="ie=edge">{enter}<title>test</title>{enter}</head>{enter}<body>{enter 2}</body>{enter}</html>{up 2}
 	
