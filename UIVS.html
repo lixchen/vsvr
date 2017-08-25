@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>test</title>
+<style>
+* {margin:0;padding:0;box-sizing:border-box;}
+#calendar {
+width:max-content;
+height: max-content;
+border: 1px solid #000;
+}
+span {
+width: 20px;
+height: 20px;
+display: inline-block;
+}
+</style>
+</head>
+<body>
+ <div id="calendar">
+<div class="head"></div>
+<div class='date-list'>
+<span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span><br>
+<span></span><span></span><span></span><span></span><span></span><span></span><span></span><br>
+<span></span><span></span><span></span><span></span><span></span><span></span><span></span><br>
+<span></span><span></span><span></span><span></span><span></span><span></span><span></span><br>
+<span></span><span></span><span></span><span></span><span></span><span></span><span></span><br>
+<span></span><span></span><span></span><span></span><span></span><span></span><span></span><br>
+<span></span><span></span><span></span><span></span><span></span><span></span><span></span><br>
+</div>
+ </div>
+</body>
+</html>
+<script>
+var date = new Date();
+var year = date.getFullYear();
+var month = date.getMonth();
+var total = date.get??
+
+var head = document.getElementsByClassName('head')[0];
+var date_list = document.getElementsByTagName('span');
+head.textContent = `${year}年${month+1}月`;
+
+var firstday = new Date(year, month,1);
+var week = firstday.getDay();
+
+[].forEach.call(date_list, (item,index,arr)=>{
+var text = (index - week - 6) > 31 ? index - week - 6 - total
+	: (index - week - 6) < 1 ? 0
+		: (index - week - 6);
+(index>6)&&(item.textContent = text);
+
+});
+
+
+
+</script>
