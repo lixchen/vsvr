@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>test</title>
+<style>
+* {margin:0;padding:0;box-sizing:border-box;}
+#box {
+position:absolute;
+left:50px;
+top:50px;
+width: 200px;
+height: 200px;
+border: 1px solid #000;
+cursor: default;
+}
+</style>
+</head>
+<body>
+ <div id="box">
+ </div>
+</body>
+</html>
+<script>
+box.onmousemove = function(event){
+var 
+l = event.clientX - box.offsetLeft,
+r = box.offsetLeft + box.offsetWidth - event.clientX,
+t = event.clientY - box.offsetTop,
+b = box.offsetTop + box.offsetHeight - event.clientY;
+box.style.cursor = (l <= 15 && t <= 15) || (r <= 15 && b <= 15)? 'se-resize' :
+	(l <= 15 && b <= 15) || (r <= 15 && t <= 15)? 'ne-resize':
+	l <= 5 || r <= 5  ? 'e-resize' : 
+	t <= 5 || b <= 5 ? 's-resize':
+	'default';
+}
+</script>
