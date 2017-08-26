@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>test</title>
+<style>
+* {margin:0;padding:0;box-sizing:border-box;}
+#clock {
+position: relative;
+width: 200px;
+height: 200px;
+border: 1px solid #000;
+border-radius: 100px;
+}
+.hour, .minute, .second {
+position: absolute;
+top: 100px;
+display: block;
+width: 100px;
+height: 1px;
+background-color: #000;
+transform-origin:100%;
+transform: rotate(90deg);	
+}
+
+.second{}
+</style>
+</head>
+<body>
+ <div id="clock">
+<span class="hour"></span>
+<span class="minute"></span>
+<span class="second"></span>
+ </div>
+</body>
+</html>
+<script>
+var clock = document.getElementById('clock'),
+hour = clock.getElementsByClassName('hour')[0],
+minute = clock.getElementsByClassName('minute')[0],
+second = clock.getElementsByClassName('second')[0];
+
+
+
+setInterval(function(){
+var date = new Date(),
+date_hour = date.getHours(),
+date_minute = date.getMinutes(),
+date_second = date.getSeconds();
+
+date_hour = date_hour > 12 ? date_hour - 12 : date_hour;
+date_hour = date_hour + date_minute / 60;
+
+hour.style.transform = `rotate(${30*date_hour + 90}deg)`;
+minute.style.transform = `rotate(${6*date_minute + 90}deg)`;
+second.style.transform = `rotate(${6*date_second + 90}deg)`;
+},1000)
+
+
+</script>
