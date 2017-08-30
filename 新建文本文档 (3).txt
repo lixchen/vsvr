@@ -1,0 +1,52 @@
+// controller
+new_todo.addEventListener('change', newTodoHandler, false)
+
+newTodoHandler(){
+  var newItem = {
+    title: new_todo.value,
+    completed: false,
+    id: new Date().getTime()
+  }
+  model.addItem(newItem)
+  view.rend('newItem', newItem);
+}
+
+// model
+
+
+
+function addItem(newItem) {
+  store.addItem(newItem);
+}
+
+// view
+
+view.rend(cmd, data) {
+	var template = 	
+		`<li data-id=${data.id}>
+			<div>
+				<input type="checkbox" class="toggle">
+				<label>${data.title}</label>
+				<button class="destroy"></button>
+			</div>
+		</li>`
+
+	var commands = {
+		newItem: function(){
+			todo_list.innerHTML = template;
+		}
+	}
+
+	commands[cmd]();
+}
+
+// store
+
+function getData() {
+	return JSON.parse(JSON.stringify(localStorage[this._dbname]))
+}
+function updataData(data) {
+	localStorage[this._dbname] = JSON.stringify(data)
+}
+function addItem(newItem) {
+}
