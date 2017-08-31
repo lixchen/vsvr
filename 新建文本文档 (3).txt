@@ -1,52 +1,109 @@
-// controller
-new_todo.addEventListener('change', newTodoHandler, false)
+/**
+ * 
+    main = $('.main')
+    footer = $('.footer')
+    todo_count = $('.todo-count')
+    filters = $('.filters')
+    todo_list = $('.todo-list')
+    toggle_all = $('.toggle-all')
+    new_todo = $('.new-todo')
+    clear_completed = $('.clear-completed')
+  this.new_todo = $('.new-todo')
+  this.main = $('.main')
+  this.footer = $('.footer')
+  this.todo_count = $('.todo-count')
+  this.filters = $('.filters')
+  this.todo_list = $('.todo-list')
+  this.toggle_all = $('.toggle-all')
+  this.new_todo = $('.new-todo')
+  this.clear_completed = $('.clear-completed')
+ */
 
-newTodoHandler(){
-  var newItem = {
-    title: new_todo.value,
-    completed: false,
-    id: new Date().getTime()
+
+
+// Controller
+var Controller = {
+  init() {
+    this.model = Model
+    this.view = View
+    this.view.new_todo.addEventListener('change', this.addItem, false)
+  },
+  addItem() {
+    var newItem = {
+      title: this.view.new_todo,
+      completed: false,
+      id: new Date().getTime()
+    }
+    Model.addItem(newItem)
+    View.rend('newItem', newItem);
   }
-  model.addItem(newItem)
-  view.rend('newItem', newItem);
+
 }
 
-// model
 
-
-
-function addItem(newItem) {
-  store.addItem(newItem);
+// Model
+var Model = {
+  init() {
+    this.store = Store
+  },
+  addItem(newItem) {
+    Store.addItem(newItem);
+  }
 }
 
-// view
 
-view.rend(cmd, data) {
-	var template = 	
-		`<li data-id=${data.id}>
-			<div>
-				<input type="checkbox" class="toggle">
-				<label>${data.title}</label>
-				<button class="destroy"></button>
-			</div>
-		</li>`
 
-	var commands = {
-		newItem: function(){
-			todo_list.innerHTML = template;
-		}
-	}
+// View
+var View = {
+  init() {
+    this.new_todo = $('.new-todo')
+    this.main = $('.main')
+    this.footer = $('.footer')
+    this.todo_count = $('.todo-count')
+    this.filters = $('.filters')
+    this.todo_list = $('.todo-list')
+    this.toggle_all = $('.toggle-all')
+    this.new_todo = $('.new-todo')
+    this.clear_completed = $('.clear-completed')
+  },
+  rend(cmd, data) {
+    var template =
+      `<li data-id=${data.id}>
+      <div>
+        <input type="checkbox" class="toggle">
+        <label>${data.title}</label>
+        <button class="destroy"></button>
+      </div>
+    </li>`
 
-	commands[cmd]();
+    var commands = {
+      newItem: function() {
+        todo_list.innerHTML = template;
+      }
+    }
+
+    commands[cmd]();
+  }
 }
 
-// store
-
-function getData() {
-	return JSON.parse(JSON.stringify(localStorage[this._dbname]))
-}
-function updataData(data) {
-	localStorage[this._dbname] = JSON.stringify(data)
-}
-function addItem(newItem) {
+// Store
+var Store = {
+  init(name) {
+    this._dbname = name
+    this.data = []
+    if (!localStorage[name]) {
+      var data = []
+      this.updateDate(data)
+    }
+  },
+  getData() {
+    return JSON.parse(JSON.stringify(localStorage[this._dbname]))
+  },
+  updataData(data) {
+    localStorage[this._dbname] = JSON.stringify(data)
+  },
+  addItem(newItem) {
+    this.data.push(newItem)
+    this.updataData(this.data)
+  }
 }
