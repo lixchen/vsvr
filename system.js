@@ -1,3 +1,4 @@
+let System = {};
 let Store = {
   newStore(name) {
     return Object.create(this).init(name);
@@ -78,3 +79,8 @@ let menu = {
   
   
 }
+
+
+
+
+
